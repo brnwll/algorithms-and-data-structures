@@ -1,34 +1,32 @@
-let m = [
-  [5, 8, -2, 8, 100, 200],
-  [7, -12, 55, 7, 300, 400],
-  [1, 2, 3, 4, 500, 600],
-  [-1, 2, 3, 7, 700, 800],
-  [10, 20, 30, 70, 7000, 8000],
-  [-10, 25, 35, 75, 7005, 8005],
-];
-
-/*
-  Sort each border of the matrix in a clockwise pattern
-*/
-
-console.table(m);
-
+/**
+ * Sort each border of the matrix in a clockwise pattern
+ * @param {Array} m - sqaure matrix to sort
+ */
 function borderSort(m) {
-  let size = m[0].length; // initial window is the whole matrix
-  let row = 0;
-  let col = 0;
+  // validate input
+  for (let row of m) {
+    if (!Array.isArray(row))
+      throw new Error("Matrix must be an array of arrays");
+    if (row.length !== m.length) throw new Error("Matrix must be square");
+  }
 
-  while (size >= 1) {
+  // initial window is the whole matrix
+  let wSize = m.length;
+  let wStartRow = 0;
+  let wStartCol = 0;
+
+  while (wSize >= 1) {
     let borderElements = [];
     const getBorderElement = (row, col) => borderElements.push(m[row][col]);
-    traverseBorder(row, col, size, getBorderElement);
+    traverseBorder(wStartRow, wStartCol, wSize, getBorderElement);
     borderElements.sort((a, b) => a - b);
     const setBorderElement = (row, col) =>
       (m[row][col] = borderElements.shift());
-    traverseBorder(row, col, size, setBorderElement);
-    row++;
-    col++;
-    size -= 2;
+    traverseBorder(wStartRow, wStartCol, wSize, setBorderElement);
+    // setup next window
+    wStartRow++;
+    wStartCol++;
+    wSize -= 2;
   }
 
   function traverseBorder(row, col, size, cb) {
@@ -52,5 +50,15 @@ function borderSort(m) {
   }
 }
 
+// Test data
+let m = [
+  [5, 8, -2, 8, 100, 200],
+  [7, -12, 55, 7, 300, 400],
+  [1, 2, 3, 4, 500, 600],
+  [-1, 2, 3, 7, 700, 800],
+  [10, 20, 30, 70, 7000, 8000],
+  [-10, 25, 35, 75, 7005, 8005],
+];
+console.table(m);
 borderSort(m);
 console.table(m);
