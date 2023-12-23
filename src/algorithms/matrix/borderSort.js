@@ -1,8 +1,9 @@
 /**
  * Sort each border of the matrix in a clockwise pattern
  * @param {Array} m - sqaure matrix to sort
+ * @returns {Array} - sorted matrix
  */
-function borderSort(m) {
+export function borderSort(m) {
   // validate input
   for (let row of m) {
     if (!Array.isArray(row))
@@ -48,17 +49,6 @@ function borderSort(m) {
     for (row; row >= startRow; row--)
       if (row !== startRow && row !== endRow) cb(row, col);
   }
-}
 
-// Test data
-let m = [
-  [5, 8, -2, 8, 100, 200],
-  [7, -12, 55, 7, 300, 400],
-  [1, 2, 3, 4, 500, 600],
-  [-1, 2, 3, 7, 700, 800],
-  [10, 20, 30, 70, 7000, 8000],
-  [-10, 25, 35, 75, 7005, 8005],
-];
-console.table(m);
-borderSort(m);
-console.table(m);
+  return m;
+}
