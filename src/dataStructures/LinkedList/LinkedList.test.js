@@ -95,4 +95,13 @@ describe("LinkedList", () => {
       expect(list.toArray()).toEqual([1, 2, 3]);
     });
   });
+  describe("reverse", () => {
+    it("should reverse the list", () => {
+      const list = new LinkedList(1, 2, 3);
+      list.reverse();
+      expect(list.head.value).toBe(3);
+      expect(list.head.next.value).toBe(2);
+      expect(list.head.next.next.value).toBe(1);
+    });
+  });
 });

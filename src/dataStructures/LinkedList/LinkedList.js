@@ -72,6 +72,18 @@ export class LinkedList {
     return curr;
   };
 
+  reverse = () => {
+    let curr = this.head;
+    let prev = null;
+    while (curr) {
+      let next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    this.head = prev;
+  };
+
   toString = () => {
     let str = "";
     let curr = this.head;
