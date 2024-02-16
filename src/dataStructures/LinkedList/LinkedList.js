@@ -66,6 +66,22 @@ export class LinkedList {
     curr.next = curr.next.next;
   };
 
+  find = (value) => {
+    let curr = this.head;
+    while (curr.value !== value) curr = curr.next;
+    return curr;
+  };
+
+  toString = () => {
+    let str = "";
+    let curr = this.head;
+    while (curr) {
+      str += curr.value + " → ";
+      curr = curr.next;
+    }
+    return str + curr;
+  };
+
   log = () => {
     let message = (c) => `${c.value} -> ${c.next ? c.next.value : null}`;
     let curr = this.head;

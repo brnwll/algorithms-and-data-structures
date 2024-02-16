@@ -77,4 +77,16 @@ describe("LinkedList", () => {
       expect(list.head.next.value).toBe(3);
     });
   });
+  describe("find", () => {
+    it("should return the first node with the given value", () => {
+      const list = new LinkedList(1, 2, 3);
+      expect(list.find(2).value).toBe(2);
+    });
+  });
+  describe("toString", () => {
+    it("should return a string representation of the list", () => {
+      const list = new LinkedList(1, 2, 3);
+      expect(list.toString()).toContain("1 → 2 → 3 → null");
+    });
+  });
 });
