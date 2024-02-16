@@ -89,4 +89,10 @@ describe("LinkedList", () => {
       expect(list.toString()).toContain("1 → 2 → 3 → null");
     });
   });
+  describe("toArray", () => {
+    it("should return an array representation of the list", () => {
+      const list = new LinkedList(1, 2, 3);
+      expect(list.toArray()).toEqual([1, 2, 3]);
+    });
+  });
 });

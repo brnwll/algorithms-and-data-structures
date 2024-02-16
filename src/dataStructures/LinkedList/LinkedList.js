@@ -82,6 +82,16 @@ export class LinkedList {
     return str + curr;
   };
 
+  toArray = () => {
+    let arr = [];
+    let curr = this.head;
+    while (curr) {
+      arr.push(curr.value);
+      curr = curr.next;
+    }
+    return arr;
+  };
+
   log = () => {
     let message = (c) => `${c.value} -> ${c.next ? c.next.value : null}`;
     let curr = this.head;
